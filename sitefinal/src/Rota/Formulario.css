@@ -1,0 +1,40 @@
+/* Estilo do container do formulário de contato */
+.contact-form {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 300px;
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Estilo dos campos do formulário */
+  .contact-form input {
+    margin-bottom: 10px;
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+  }
+  
+  /* Estilo do botão de envio */
+  .contact-form button {
+    background-color: #007bff;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    font-size: 16px;
+  }
+  
+  /* Estilo para dispositivos menores que 600px de largura */
+  @media (max-width: 600px) {
+    .contact-form {
+      width: 100%;
+      position: relative;
+    }
+  }
+  

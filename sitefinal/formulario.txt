@@ -1,0 +1,107 @@
+ style={{
+      width: '200px',
+      height: '100px',
+      objectFit: 'cover',
+     }}
+1
+
+2
+
+3
+Para integrar seu formulário com um servidor, você precisará modificar o manipulador onSubmit para fazer uma solicitação de rede ao servidor. Aqui está um exemplo de como fazer isso usando a biblioteca Axios:
+
+JavaScript
+import React, { useState } from 'react';
+import axios from 'axios';
+import "../Components/Formulario.css";
+
+const Formulario = () => {
+  const [nome, setNome] = useState('');
+  const [email, setEmail] = useState('');
+  const [mensagem, setMensagem] = useState('');
+
+  const onSubmit = (e) => {
+    e.preventDefault();
+
+    const data = {
+      nome,
+      email,
+      mensagem
+    };
+
+    axios.post('/api/contato', data)
+      .then(() => {
+        alert('Sua mensagem foi enviada com sucesso!');
+        setNome('');
+        setEmail('');
+        setMensagem('');
+      })
+      .catch((error) => {
+        console.error(error);
+        alert('Ocorreu um erro ao enviar sua mensagem.');
+      });
+  };
+
+  return (
+    <form onSubmit={onSubmit}>
+      <input
+        type="text"
+        placeholder="Nome"
+        value={nome}
+        onChange={(e) => setNome(e.target.value)}
+      />
+      <input
+        type="email"
+        placeholder="E-mail"
+        value={email}
+        onChange={(e) => setEmail(e.target.value)}
+      />
+      <input
+        type="text"
+        placeholder="Mensagem"
+        value={mensagem}
+        onChange={(e) => setMensagem(e.target.value)}
+      />
+      <button type="submit">Enviar</button>
+    </form>
+  );
+};
+export default Formulario;
+Use o código com cuidado. Saiba mais
+Esse código enviará uma solicitação POST para o endpoint /api/contato no servidor quando o formulário for enviado. A solicitação incluirá os dados do formulário como JSON no corpo. Se a solicitação for bem-sucedida, um alerta será exibido e os campos do formulário serão limpos. Se a solicitação falhar, uma mensagem de erro será exibida no console e um alerta será exibido.
+
+Para fazer esse código funcionar, você precisará ter um endpoint do lado do servidor que possa lidar com o endpoint /api/contato. O endpoint deve ser capaz de receber os dados do formulário e armazená-los em um banco de dados ou enviá-los para um endereço de e-mail.
+
+Aqui está um exemplo de como implementar o endpoint em Node.js:
+
+JavaScript
+const express = require('express');
+const bodyParser = require('body-parser');
+
+const app = express();
+
+app.use(bodyParser.json());
+
+app.post('/api/contato', (req, res) => {
+  const data = req.body;
+  const nome = data.nome;
+  const email = data.email;
+  const mensagem = data.mensagem;
+
+  // Armazene os dados em um banco de dados ou envie para um endereço de e-mail
+  console.log(`Dados do formulário de contato recebidos: ${nome}, ${email}, ${mensagem}`);
+
+  res.sendStatus(200);
+});
+
+app.listen(3000, () => {
+  console.log('Servidor ouvindo na porta 3000');
+});
+Use o código com cuidado. Saiba mais
+Esse código iniciará um servidor na porta 3000 e ouvirá solicitações POST para o endpoint /api/contato. Quando uma solicitação for recebida, os dados do formulário serão registrados no console e um código de status de 200 será enviado de volta ao cliente.
+
+Para usar esse código, você precisará fazer as seguintes alterações no formulário:
+
+Altere o atributo action do formulário para /api/contato.
+Altere o tipo de dados dos campos nome, email e mensagem para string.
+Depois de fazer essas alterações, o formulário enviará os dados para o endpoint /api/contato no servidor. O endpoint pode então armazenar os dados em um banco de dados ou enviá-los para um endereço de e-mail.
