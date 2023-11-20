@@ -16,7 +16,7 @@ function Main() {
       
       <section id="quemsoueu" className="Sobre">
         <div className="Sobre-conteudo">
-        <img scr={Perfil}  style={{
+        <img src={Perfil}  style={{
       width: '200px',
       height: '100px',
       objectFit: 'cover',

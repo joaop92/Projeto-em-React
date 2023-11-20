@@ -11,7 +11,7 @@ function Header() {
 
   return (
     <header>
-     <img scr={foto} alt="logo" title="forçadevontade" style={{
+     <img src={foto} alt="logo" title="forçadevontade" style={{
       width: '200px',
       height: '100px',
       objectFit: 'cover',
